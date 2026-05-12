@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamonds</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+}
+
+.page {
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Diamonds Page */
+.diamonds-header {
+    background: #fff;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.back-btn {
+    font-size: 24px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.page-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #d4ff00, #a8e063);
+    margin: 15px;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+}
+
+.balance-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.balance-amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.balance-amount img {
+    width: 30px;
+    height: 30px;
+}
+
+.balance-value {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.assets-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.8);
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: scale(1.02);
+}
+
+.btn-withdraw {
+    background: #fff;
+    color: #333;
+}
+
+.btn-exchange {
+    background: #333;
+    color: #fff;
+}
+
+.btn-transfer {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #fff;
+    margin-top: -5px;
+}
+
+.filter-item {
+    padding: 8px 15px;
+    background: #f5f5f5;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #666;
+}
+
+.filter-item.select {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.income-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    min-width: 150px;
+}
+
+.income-dropdown.active {
+    display: block;
+}
+
+.income-option {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.income-option:last-child {
+    border-bottom: none;
+}
+
+.income-option:hover {
+    background: #f9f9f9;
+}
+
+.income-option.active {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.record-section {
+    display: none;
+    padding: 15px;
+}
+
+.record-section.active {
+    display: block;
+}
+
+.record-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.record-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.record-info {
+    flex: 1;
+}
+
+.record-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.record-time {
+    font-size: 12px;
+    color: #888;
+}
+
+.record-amount {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ff6b6b;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.empty-text {
+    font-size: 14px;
+    color: #999;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Transfer Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: flex-end;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    flex: 1;
+    text-align: center;
+}
+
+.modal-close {
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.receiver-section {
+    margin-bottom: 20px;
+}
+
+.receiver-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.receiver-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #fef3e2;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.receiver-label-text {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.receiver-text {
+    flex: 1;
+    font-size: 15px;
+    color: #333;
+    margin-left: 10px;
+}
+
+.receiver-arrow {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Coin Seller Dropdown */
+.seller-dropdown {
+    display: none;
+    margin-top: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.seller-dropdown.active {
+    display: block;
+}
+
+.seller-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.seller-item:last-child {
+    border-bottom: none;
+}
+
+.seller-item:hover {
+    background: #f9f9f9;
+}
+
+.seller-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-right: 15px;
+}
+
+.seller-info {
+    flex: 1;
+}
+
+.seller-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.seller-id {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+.seller-contact {
+    font-size: 12px;
+    color: #666;
+}
+
+.seller-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+}
+
+.seller-check.active {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.amount-section {
+    margin-bottom: 25px;
+}
+
+.amount-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.amount-item {
+    background: #fef3e2;
+    border-radius: 10px;
+    padding: 15px 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.amount-item.active {
+    background: linear-gradient(135deg, #ffd700, #ffb700);
+    border-color: #ff8c00;
+}
+
+.amount-price {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.amount-coins {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ffd700, #ffb700);
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+    </style>
+</head>
+<body>
+    <!-- Diamonds Page -->
+    <div id="diamonds-page" class="page">
+        <div class="diamonds-header">
+            <span class="back-btn">←</span>
+            <span class="page-title">Diamonds</span>
+        </div>
+
+        <div class="balance-card">
+            <span class="balance-label">Balance</span>
+            <div class="balance-amount">
+                <span>💎</span>
+                <span>61,870,076</span>
+            </div>
+            <span class="balance-value">≈$258.61EGP</span>
+            <button class="assets-btn">Assets</button>
+            
+            <div class="action-buttons">
+                <button class="btn btn-withdraw">Withdraw</button>
+                <button class="btn btn-exchange">Exchange coins</button>
+                <button class="btn btn-transfer" id="transfer-btn">Transfer</button>
+            </div>
+        </div>
+
+        <div class="filter-section" style="position: relative;">
+            <span class="filter-item">2026-05-06 ▼</span>
+            <span class="filter-item">-</span>
+            <span class="filter-item">2026-05-12 ▼</span>
+            <span class="filter-item select" id="income-select">
+                <span id="income-text">Income</span> ▼
+            </span>
+            
+            <div class="income-dropdown" id="income-dropdown">
+                <div class="income-option active" data-type="income">Income</div>
+                <div class="income-option" data-type="transfer">Transfer</div>
+            </div>
+        </div>
+
+        <div class="empty-state" id="empty-state">
+            <div class="empty-icon">📭</div>
+            <span class="empty-text">No data existed.</span>
+        </div>
+
+        <div class="record-section" id="record-section">
+            <div class="record-item">
+                <div class="record-avatar">👨‍💼</div>
+                <div class="record-info">
+                    <div class="record-name">transfer to CoinMaster_001（88888888）</div>
+                    <div class="record-time">2026-05-12 14:30</div>
+                </div>
+                <span class="record-amount">-💎 2M</span>
+            </div>
+            <div class="record-item">
+                <div class="record-avatar">👩‍💼</div>
+                <div class="record-info">
+                    <div class="record-name">transfer to DiamondDealer（99999999）</div>
+                    <div class="record-time">2026-05-11 09:15</div>
+                </div>
+                <span class="record-amount">-💎 10M</span>
+            </div>
+            <div class="record-item">
+                <div class="record-avatar">👨‍💻</div>
+                <div class="record-info">
+                    <div class="record-name">transfer to CryptoKing（77777777）</div>
+                    <div class="record-time">2026-05-10 18:45</div>
+                </div>
+                <span class="record-amount">-💎 50M</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transfer Modal -->
+    <div id="transfer-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-close" id="modal-close">×</span>
+                <span class="modal-title">Transfer</span>
+                <div style="width: 24px;"></div>
+            </div>
+
+            <div class="receiver-section">
+                <span class="receiver-label">Receiver</span>
+                <div class="receiver-option" id="receiver-option">
+                    <span class="receiver-label-text">Coin Seller:</span>
+                    <span class="receiver-text">CoinMaster_001（88888888）</span>
+                    <span class="receiver-arrow">→</span>
+                </div>
+                
+                <!-- Coin Seller Dropdown List -->
+                <div class="seller-dropdown" id="seller-dropdown">
+                    <div class="seller-item active">
+                        <div class="seller-avatar">👨‍💼</div>
+                        <div class="seller-info">
+                            <div class="seller-name">CoinMaster_001</div>
+                            <div class="seller-id">ID: 88888888</div>
+                            <div class="seller-contact">📞 138-0000-0001</div>
+                        </div>
+                        <div class="seller-check active">✓</div>
+                    </div>
+                    <div class="seller-item">
+                        <div class="seller-avatar">👩‍💼</div>
+                        <div class="seller-info">
+                            <div class="seller-name">DiamondDealer</div>
+                            <div class="seller-id">ID: 99999999</div>
+                            <div class="seller-contact">📞 139-0000-0002</div>
+                        </div>
+                        <div class="seller-check"></div>
+                    </div>
+                    <div class="seller-item">
+                        <div class="seller-avatar">👨‍💻</div>
+                        <div class="seller-info">
+                            <div class="seller-name">CryptoKing</div>
+                            <div class="seller-id">ID: 77777777</div>
+                            <div class="seller-contact">📞 137-0000-0003</div>
+                        </div>
+                        <div class="seller-check"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="amount-section">
+                <div class="amount-grid">
+                    <div class="amount-item active">
+                        <span class="amount-price">$1</span>
+                        <span class="amount-coins">💎 2M</span>
+                    </div>
+                    <div class="amount-item">
+                        <span class="amount-price">$5</span>
+                        <span class="amount-coins">💎 10M</span>
+                    </div>
+                    <div class="amount-item">
+                        <span class="amount-price">$10</span>
+                        <span class="amount-coins">💎 20M</span>
+                    </div>
+                    <div class="amount-item">
+                        <span class="amount-price">$50</span>
+                        <span class="amount-coins">💎 100M</span>
+                    </div>
+                    <div class="amount-item">
+                        <span class="amount-price">$100</span>
+                        <span class="amount-coins">💎 200M</span>
+                    </div>
+                    <div class="amount-item">
+                        <span class="amount-price">$200</span>
+                        <span class="amount-coins">💎 400M</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="submit-btn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get elements
+    const transferBtn = document.getElementById('transfer-btn');
+    const transferModal = document.getElementById('transfer-modal');
+    const modalClose = document.getElementById('modal-close');
+    const receiverOption = document.getElementById('receiver-option');
+    const sellerDropdown = document.getElementById('seller-dropdown');
+    const incomeSelect = document.getElementById('income-select');
+    const incomeDropdown = document.getElementById('income-dropdown');
+    const incomeText = document.getElementById('income-text');
+    const incomeOptions = document.querySelectorAll('.income-option');
+    const emptyState = document.getElementById('empty-state');
+    const recordSection = document.getElementById('record-section');
+    const submitBtn = document.querySelector('.submit-btn');
+    const balanceAmount = document.querySelector('.balance-amount span:last-child');
+
+    // Transfer button click handler
+    transferBtn.addEventListener('click', function() {
+        transferModal.classList.add('active');
+    });
+
+    // Close modal handler
+    modalClose.addEventListener('click', function() {
+        transferModal.classList.remove('active');
+    });
+
+    // Click outside modal to close
+    transferModal.addEventListener('click', function(e) {
+        if (e.target === transferModal) {
+            transferModal.classList.remove('active');
+        }
+    });
+
+    // Amount selection
+    const amountItems = document.querySelectorAll('.amount-item');
+    amountItems.forEach(item => {
+        item.addEventListener('click', function() {
+            amountItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Coin Seller dropdown toggle
+    receiverOption.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sellerDropdown.classList.toggle('active');
+    });
+
+    // Click outside seller dropdown to close
+    document.addEventListener('click', function(e) {
+        if (!receiverOption.contains(e.target) && !sellerDropdown.contains(e.target)) {
+            sellerDropdown.classList.remove('active');
+        }
+        if (!incomeSelect.contains(e.target) && !incomeDropdown.contains(e.target)) {
+            incomeDropdown.classList.remove('active');
+        }
+    });
+
+    // Seller item selection
+    const sellerItems = document.querySelectorAll('.seller-item');
+    sellerItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Remove active class from all items
+            sellerItems.forEach(i => {
+                const check = i.querySelector('.seller-check');
+                check.classList.remove('active');
+                check.textContent = '';
+            });
+            
+            // Add active class to selected item
+            const check = this.querySelector('.seller-check');
+            check.classList.add('active');
+            check.textContent = '✓';
+            
+            // Update receiver text
+            const sellerName = this.querySelector('.seller-name').textContent;
+            const sellerId = this.querySelector('.seller-id').textContent;
+            const idOnly = sellerId.replace('ID: ', '');
+            document.querySelector('.receiver-text').textContent = sellerName + '（' + idOnly + '）';
+            
+            // Close dropdown
+            sellerDropdown.classList.remove('active');
+        });
+    });
+
+    // Income dropdown toggle
+    incomeSelect.addEventListener('click', function(e) {
+        e.stopPropagation();
+        incomeDropdown.classList.toggle('active');
+    });
+
+    // Income option selection
+    incomeOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Remove active class from all options
+            incomeOptions.forEach(o => o.classList.remove('active'));
+            
+            // Add active class to selected option
+            this.classList.add('active');
+            
+            // Update text
+            incomeText.textContent = this.textContent;
+            
+            // Close dropdown
+            incomeDropdown.classList.remove('active');
+            
+            // Toggle display based on type
+            const type = this.dataset.type;
+            if (type === 'income') {
+                emptyState.classList.remove('hidden');
+                recordSection.classList.remove('active');
+            } else if (type === 'transfer') {
+                emptyState.classList.add('hidden');
+                recordSection.classList.add('active');
+            }
+        });
+    });
+
+    // Submit button handler
+    submitBtn.addEventListener('click', function() {
+        // Get selected amount
+        const selectedAmount = document.querySelector('.amount-item.active');
+        const coins = selectedAmount.querySelector('.amount-coins').textContent;
+        
+        // Get selected seller
+        const receiverText = document.querySelector('.receiver-text').textContent;
+        
+        // Get current balance
+        const currentBalance = parseInt(balanceAmount.textContent.replace(/,/g, ''));
+        
+        // Extract diamond amount from selected coins (e.g., "💎 2M" -> 2000000)
+        const diamondAmount = coins.replace('💎 ', '').replace('M', '000000');
+        const transferAmount = parseInt(diamondAmount);
+        
+        // Check balance
+        if (currentBalance < transferAmount) {
+            alert('Insufficient balance!');
+            return;
+        }
+        
+        // Update balance
+        const newBalance = currentBalance - transferAmount;
+        balanceAmount.textContent = newBalance.toLocaleString();
+        
+        // Get avatar based on seller name
+        let avatarEmoji = '👨‍💼';
+        if (receiverText.includes('DiamondDealer')) {
+            avatarEmoji = '👩‍💼';
+        } else if (receiverText.includes('CryptoKing')) {
+            avatarEmoji = '👨‍💻';
+        }
+        
+        const now = new Date();
+        const timeStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        
+        const newRecord = `
+            <div class="record-item">
+                <div class="record-avatar">${avatarEmoji}</div>
+                <div class="record-info">
+                    <div class="record-name">transfer to ${receiverText}</div>
+                    <div class="record-time">${timeStr}</div>
+                </div>
+                <span class="record-amount">-💎 ${coins.replace('💎 ', '')}</span>
+            </div>
+        `;
+        
+        // Add new record to the beginning
+        recordSection.insertAdjacentHTML('afterbegin', newRecord);
+        
+        // Close modal
+        transferModal.classList.remove('active');
+        
+        // Show success message
+        alert('Transfer successful!');
+    });
+});
+    </script>
+</body>
+</html>
