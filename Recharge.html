@@ -503,7 +503,7 @@
       <div class="change_box withdraw_box" style="display: none;">
         <div class="balance_card">
           <div class="balance_title">My Balance</div>
-          <div class="balance_amount">$0.04</div>
+          <div class="balance_amount">100💎</div>
           <div class="balance_btn_group">
             <button class="balance_btn withdraw_btn">Withdrawal</button>
             <button class="balance_btn transfer_btn active">Transfer</button>
@@ -518,10 +518,6 @@
           <div class="exchange_item">2000~3000 USD: 1 USD = 11800 Gold Coins</div>
           <div class="exchange_item">3000~5000 USD: 1 USD = 11950 Gold Coins</div>
           <div class="exchange_item">&gt;5000 USD: 1 USD = 12000 Gold Coins</div>
-          <div class="exchange_title">2. Super Seller: Gold Coin Exchange Rate:</div>
-          <div class="exchange_item">&gt;=3000 USD: 1 USD = 12000 Gold Coins</div>
-          <div class="exchange_item">&gt;=3000 USD: 1 USD = 12000 Gold Coins</div>
-          <div class="exchange_title">3. Upgrade to Super Seller: Regular sellers who sell 15,000,000 Gold Coins in a calendar month will automatically be upgraded to Super Coins Sellers in the following calendar month (valid for one month) and will enjoy Super Seller profit benefits.</div>
         </div>
       </div>
     </div>
@@ -1184,11 +1180,11 @@
 
       // Transfer In 模拟数据
       let transferInData = [
-        { name: "UserA", uid: "UID10001", diamonds: 15000, time: "2025-05-12 10:30:00", ts: 1746945000000 },
-        { name: "UserB", uid: "UID10002", diamonds: 8000, time: "2025-05-12 09:15:00", ts: 1746940500000 },
-        { name: "UserC", uid: "UID10003", diamonds: 25000, time: "2025-05-11 14:20:00", ts: 1746867600000 },
-        { name: "UserD", uid: "UID10004", diamonds: 12000, time: "2025-05-11 11:00:00", ts: 1746855600000 },
-        { name: "UserE", uid: "UID10005", diamonds: 5000, time: "2025-05-10 16:45:00", ts: 1746775500000 }
+        { name: "UserA", uid: "UID10001", diamonds: 1, time: "2025-05-12 10:30:00", ts: 1746945000000 },
+        { name: "UserB", uid: "UID10002", diamonds: 2, time: "2025-05-12 09:15:00", ts: 1746940500000 },
+        { name: "UserC", uid: "UID10003", diamonds: 5, time: "2025-05-11 14:20:00", ts: 1746867600000 },
+        { name: "UserD", uid: "UID10004", diamonds: 20, time: "2025-05-11 11:00:00", ts: 1746855600000 },
+        { name: "UserE", uid: "UID10005", diamonds: 5, time: "2025-05-10 16:45:00", ts: 1746775500000 }
       ];
 
       function loadTransferInData() {
@@ -1212,7 +1208,7 @@
                 <div class="transfer_in_id">${item.uid}</div>
                 <div class="transfer_in_time">${item.time}</div>
               </div>
-              <div class="transfer_in_amount">+${item.diamonds.toLocaleString()} 💎</div>
+              <div class="transfer_in_amount">+${item.diamonds.toLocaleString()} M💎</div>
             </div>
           `;
         });
