@@ -773,7 +773,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentBalance = parseInt(balanceAmount.textContent.replace(/,/g, ''));
         
         // Extract diamond amount from selected coins (e.g., "💎 2M" -> 2000000)
-        const diamondAmount = coins.replace('💎 ', '').replace('M', '000000');
+        const diamondAmount = coins.replace('💎 ', '').replace('M', '000000').replace('K', '000');
         const transferAmount = parseInt(diamondAmount);
         
         // Check balance
