@@ -1,0 +1,826 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Sen";
+  src: local("Sen-Regular"),local("Sen Regular"), url("/font/Sen/static/Sen-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sen";
+  src: local("Sen-Bold"),local("Sen Bold"), url("/font/Sen/static/Sen-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sen";
+  src: local("Sen-Medium"),local("Sen Medium"), url("/font/Sen/static/Sen-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sen";
+  src: local("Sen-SemiBold"),local("Sen SemiBold"), url("/font/Sen/static/Sen-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sen";
+  src: local("Sen-ExtraBold"),local("Sen ExtraBold"), url("/font/Sen/static/Sen-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  font-size: 0.24rem;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea,
+img {
+  vertical-align: middle;
+  outline: none;
+  border: 0;
+}
+
+body {
+  font-family:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  overflow-x: hidden;
+  color: #333;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+em,
+i {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  vertical-align: middle;
+}
+
+* {
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+/* ios兼容 */
+input {
+  outline: none;
+  -webkit-appearance: none;
+  /*去除系统默认的样式*/
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* 点击高亮的颜色*/
+}
+
+.box {
+  background: #ffffff;
+  min-height: 100vh;
+  padding: 0.3rem;
+}
+
+img {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.centerx {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.centery {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.centerxy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.justify-content {
+  display: flex;
+  justify-content: center;
+}
+.align-items {
+  display: flex;
+  align-items: center;
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.user_box {
+  width: 6.9rem;
+  height: 1.2rem;
+  border-radius: 0.2rem;
+  background: rgba(255, 135, 17, 0.1);
+  padding: 0.2rem 0.3rem;
+}
+
+.user_img {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.2rem;
+}
+
+.id_icon {
+  width: 0.46rem;
+  height: 0.26rem;
+}
+.copy_btn {
+  width: 0.22rem;
+  height: 0.22rem;
+}
+.user_mid {
+  flex-direction: column;
+}
+.user_name {
+  font-weight: bold;
+  font-size: 0.32rem;
+  color: #333333;
+}
+.id_num {
+  font-weight: 500;
+  font-size: 0.24rem;
+  color: #ffa750;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+.user_coin {
+  margin-top: 0.22rem;
+  text-align: left;
+}
+.coin_icon {
+  width: 0.35rem;
+  height: 0.35rem;
+  margin-right: 0.15rem;
+}
+.coin_num {
+  font-weight: bold;
+  font-size: 0.3rem;
+  color: #333333;
+}
+.rewards_box {
+  margin-top: 0.3rem;
+}
+.title_top {
+  width: 100%;
+  top: 0.2rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+.tit_left {
+  font-weight: bold;
+  font-size: 0.24rem;
+  color: #ffffff;
+}
+
+.tit_time {
+  font-weight: 500;
+  font-size: 0.24rem;
+  color: #ffffff;
+}
+.rewards {
+  height: 1.2rem;
+}
+.rewards .reward_item {
+  width: 1.2rem;
+  height: 1.2rem;
+  background: linear-gradient(0deg, #ffebd1 0%, #ffb782 100%);
+  border-radius: 0.2rem;
+  border: 0.02rem solid #ffffff;
+  overflow: hidden;
+  margin-right: 0.07rem;
+  margin-bottom: 0.07rem;
+  padding: 0.08rem;
+}
+.rewards1 {
+  width: 3.75rem;
+  top: 0.62rem;
+  right: 0.4rem;
+}
+.rewards2 {
+  width: 2.55rem;
+  top: 1.88rem;
+  right: 1.03rem;
+}
+.topup {
+  font-weight: bold;
+  font-size: 0.3rem;
+  color: #333333;
+  margin-top: 0.35rem;
+  margin-bottom: 0.2rem;
+}
+.coin_box {
+  width: 100%;
+  /* height: 5.35rem; */
+}
+/* 清除浮动 */
+.coin_box::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* .coin_item {
+  width: 2.2rem;
+  height: 2.6rem;
+  background: #ffffff;
+  border-radius: 0.4rem;
+  border: 0.03rem solid #e0dad6;
+  text-align: center;
+  float: left;
+  margin-bottom: 0.15rem;
+}
+
+.coin_item:nth-child(3n + 2) {
+  margin-left: 0.14rem;
+  margin-right: 0.14rem;
+}
+
+.prob {
+  width: 0.92rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: linear-gradient(90deg, #ffb350, #c63dff);
+  border-radius: 0.3rem 0.02rem 0.3rem 0rem;
+  text-align: center;
+  font-family: Sen;
+  font-weight: 400;
+  font-size: 0.26rem;
+  color: #ffffff;
+  top: -0.02rem;
+  left: -0.02rem;
+}
+.num1,
+.num2,
+.money {
+  width: 100%;
+  font-family: Sen;
+}
+.num1 {
+  margin-top: 0.4rem;
+  font-weight: bold;
+  font-size: 0.4rem;
+  color: #333333;
+}
+.num2 {
+  font-weight: 400;
+  font-size: 0.24rem;
+  color: #333333;
+  text-decoration-line: line-through;
+}
+.coin2_icon {
+  width: 0.56rem;
+  height: 0.56rem;
+  margin-top: 0.15rem;
+  margin-bottom: 0.15rem;
+}
+.money {
+  font-weight: 500;
+  font-size: 0.28rem;
+  color: #999999;
+} */
+
+.coin_item {
+  width: 6.9rem;
+  height: 1rem;
+  line-height: 1rem;
+  background: #ffffff;
+  border-radius: 0.2rem;
+  border: 0.01rem solid #e0dad6;
+  margin-bottom: 0.3rem;
+}
+.coin2_icon {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  margin-left: 0.3rem;
+  float: left;
+}
+.num1 {
+  font-size: 0.36rem;
+  font-weight: bold;
+  color: #333333;
+  float: left;
+  margin-left: 0.2rem;
+}
+.money {
+  font-size: 0.28rem;
+  font-weight: bold;
+  color: #333333;
+  font-weight: bold;
+  float: right;
+  min-width: 1rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  background: #ffffff;
+  text-align: center;
+  border-radius: 0.25rem;
+  margin-top: 0.25rem;
+  margin-right: 0.3rem;
+  padding: 0 0.2rem;
+}
+
+.coin_item.active {
+  background: #ffffff;
+  border: 0.01rem solid #ffb30c;
+}
+.coin_item.active .money {
+  background: #fff4d0;
+  color: #ffb30c;
+}
+.coin_item.active .num1 {
+  color: #ffb30c;
+}
+
+.pay_box {
+  width: 100%;
+}
+
+.pay_type {
+  width: 2.2rem;
+  height: 1rem;
+  background: #ffffff;
+  border-radius: 0.3rem;
+  border: 0.03rem solid #e0dad6;
+}
+.pay_type img {
+  max-width: 100%;
+}
+.gcash {
+  width: 1.53rem;
+}
+.dana {
+  width: 1.29rem;
+}
+.ovo {
+  width: 0.95rem;
+}
+.pay_type.active {
+  background: linear-gradient(178deg, #ffe7d5 0%, #fffef7 100%);
+  border: 0.03rem solid #ff8221;
+}
+.sub_btn {
+  width: 6rem;
+  text-align: center;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  background: linear-gradient(90deg, #a92eff 0%, #ffa019 100%);
+  border-radius: 0.44rem;
+  font-weight: bold;
+  font-size: 0.36rem;
+  color: #ffffff;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.tip {
+  width: 100%;
+  text-align: center;
+}
+body {
+  background: #ffffff;
+}
+.login_box {
+  width: 100%;
+  background: #bff7ff;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.face_btn {
+  bottom: 1.7rem;
+}
+.google_btn {
+  bottom: 3.2rem;
+}
+.face_btn,
+.google_btn {
+  width: 5.8rem;
+  height: 1rem;
+  line-height: 1rem;
+  background: #ffffff;
+  border-radius: 0.2rem;
+  text-align: center;
+  font-family: PingFang SC;
+  font-weight: bold;
+  font-size: 0.3rem;
+  color: #333333;
+  border: 0.01rem solid #c9c9c9;
+}
+
+.google_btn img,
+.face_btn img {
+  position: absolute;
+  width: 0.35rem;
+  vertical-align: text-bottom;
+  margin-right: 0.2rem;
+  left: 0.4rem;
+  top: 0.3rem;
+}
+.login_tip a {
+  text-decoration: underline;
+}
+
+.login_tip {
+  width: 100%;
+  font-family: PingFang SC;
+  font-weight: bold;
+  font-size: 0.22rem;
+  color: #999999;
+  text-align: center;
+  bottom: 0.35rem;
+}
+.currency {
+  position: relative;
+}
+.lable {
+  width: 6.9rem;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  background: #ffffff;
+  border-radius: 0.2rem;
+  border: 0.03rem solid #e0dad6;
+  border-bottom: 0.015rem solid #e0dad6;
+  padding-left: 0.3rem;
+}
+.lable span {
+  font-weight: bold;
+  font-size: 0.36rem;
+  color: #333333;
+}
+.lable img {
+  width: 0.56rem;
+  height: 0.38rem;
+  vertical-align: sub;
+  margin-right: 0.2rem;
+}
+
+.option {
+  width: 6.9rem;
+  height: auto;
+  background: #ffffff;
+  border-radius: 0.2rem;
+  border: 0.03rem solid #e0dad6;
+  border-top: 0.015rem solid #e0dad6;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+
+  padding-left: 0.3rem;
+  position: absolute;
+  z-index: 999;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.option .option_item span {
+  font-weight: bold;
+  font-size: 0.36rem;
+  color: #333333;
+}
+.option .option_item img {
+  width: 0.56rem;
+  height: 0.38rem;
+  vertical-align: sub;
+  margin-right: 0.2rem;
+}
+
+.option_item {
+  height: 0.6rem;
+  line-height: 0.6rem;
+}
+
+.arrow {
+  position: absolute;
+  width: 0.28rem;
+  height: 0.18rem;
+  right: 0.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.currency.active .option {
+  display: flex;
+}
+.currency.active .arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+.userid_input {
+  width: 4.6rem;
+  height: 0.7rem;
+  background: #f4f4f4;
+  border-radius: 0.2rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-weight: 500;
+  font-size: 0.28rem;
+}
+.confirm_btn {
+  width: 1.5rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  text-align: center;
+  background: #ffb30c !important;
+  border-radius: 0.2rem;
+
+  font-weight: bold;
+  font-size: 0.28rem;
+  color: #ffffff !important;
+}
+.userid_input::-webkit-input-placeholder,
+.userid_input::placeholder {
+  font-weight: 500;
+  font-size: 0.28rem;
+  color: #999999;
+}
+.edit_btn {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.pay_sel {
+  position: relative;
+}
+.pay_lable {
+  width: 6.9rem;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  background: #ffffff;
+  border-radius: 0.2rem;
+  border: 0.03rem solid #e0dad6;
+  border-bottom: 0.015rem solid #e0dad6;
+  padding-left: 0.3rem;
+}
+.pay_lable img {
+  width: 1.3rem;
+  vertical-align: top;
+  margin-right: 0.2rem;
+  position: relative;
+  top: 0.15rem;
+}
+.pay_lable span {
+  font-weight: bold;
+  font-size: 0.32rem;
+  color: #333333;
+}
+
+.pay_option {
+  width: 6.9rem;
+  height: auto;
+  background: #ffffff;
+  border-radius: 0.2rem;
+  border: 0.03rem solid #e0dad6;
+  border-top: 0.015rem solid #e0dad6;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+
+  padding-left: 0.3rem;
+  position: absolute;
+  z-index: 999;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+.pay_option .pay_option_item img {
+  width: 1.3rem;
+  vertical-align: top;
+  margin-right: 0.2rem;
+  position: relative;
+  top: 0.2rem;
+}
+.pay_option .pay_option_item span {
+  font-weight: bold;
+  font-size: 0.32rem;
+  color: #333333;
+}
+
+.pay_option_item {
+  height: 0.9rem;
+  line-height: 0.9rem;
+}
+
+.pay_arrow {
+  position: absolute;
+  width: 0.28rem;
+  height: 0.18rem;
+  right: 0.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.pay_sel.active .pay_option {
+  display: flex;
+}
+.pay_sel.active .pay_arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* 充值 */
+.user_box {
+  background: #fff4d0;
+}
+.noUser {
+  background: #ffffff;
+}
+.user_name,
+.id_num,
+.coin_num {
+  color: #333333;
+}
+.sub_btn,
+.confirm_btn {
+  background: #fff4d0;
+  color: #ffb30c;
+}
+.id_text {
+  font-weight: 500;
+  font-size: 0.24rem;
+  color: #333333;
+}
+.time {
+  font-weight: 500;
+  font-size: 0.24rem;
+  color: #ffffff;
+  right: 0.15rem;
+  top: 0.05rem;
+}
+.rate_box {
+  width: 0.95rem;
+  height: 0.34rem;
+  left: -0.14rem;
+  top: -0.17rem;
+}
+.rate_box img {
+  width: 100%;
+  vertical-align: top;
+}
+.rate {
+  font-weight: 500;
+  font-size: 0.2rem;
+  color: #ffffff;
+}
+.num_old {
+  font-weight: 300;
+  font-size: 0.24rem;
+  color: #999999;
+  text-decoration-line: line-through;
+  float: left;
+  margin-left: 0.2rem;
+}
+.prob {
+  width: 0.92rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #ff542c;
+  border-radius: 0.08rem;
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.26rem;
+  color: #ffffff;
+  float: left;
+  margin-top: 0.28rem;
+  margin-left: 0.2rem;
+}
+
+[dir="rtl"] .lable{
+  padding-right: 0.3rem;
+  padding-left: 0;
+}
+[dir="rtl"] .arrow{
+  left: 0.3rem;
+  right: auto;
+}
+[dir="rtl"] .lable img{
+  margin-left: 0.2rem;
+  margin-right: auto;
+}
+[dir="rtl"] .option {
+  padding-left: 0;
+  padding-right: 0.3rem;
+}
+[dir="rtl"] .option .option_item img {
+  margin-left: 0.2rem;
+  margin-right: 0;
+}
+[dir="rtl"] .coin2_icon,
+[dir="rtl"] .num1,
+[dir="rtl"]  .prob{
+  float: right;
+}
+[dir="rtl"] .money{
+  float: left;
+  margin-left: 0.3rem;
+  margin-right:0;
+}
+
+[dir="rtl"] .coin2_icon{
+  margin-left: 0;
+  margin-right: 0.3rem;
+}
+[dir="rtl"] .num1{
+  margin-left: 0;
+  margin-right: 0.2rem;
+}
+[dir="rtl"]  .prob{
+  margin-left: 0;
+  margin-right: 0.2rem;
+}
+[dir="rtl"] .pay_arrow{
+  right: auto;
+  left: 0.3rem;
+}
+[dir="rtl"] .pay_lable{
+  padding-right: 0.3rem;
+  padding-left: 0;
+}
+[dir="rtl"] .pay_lable img{
+  margin-right: 0;
+  margin-left: 0.2rem;
+}
+[dir="rtl"] .pay_option{
+  padding-left: 0;
+  padding-right: 0.3rem;
+}
+[dir="rtl"] .pay_option .pay_option_item img {
+  margin-left: 0.2rem;
+  margin-right: 0;
+}

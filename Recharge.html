@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://gmh5.go1777.com/reseller/index?lang=en-us -->
+<html lang="en" dir="" style="font-size:100px"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta content="telephone=no" name="format-detection">
+    <title>Recharge</title>
+    <script>
+      (function (_D) {
+        var _self = {};
+        _self.resizeEvt =
+                "orientationchange" in window ? "orientationchange" : "resize";
+        _self.Html = _D.getElementsByTagName("html")[0];
+        _self.widthProportion = function () {
+          const clientWidth = _self.Html.clientWidth;
+          if (!clientWidth) return;
+
+          if (clientWidth>750){
+            return 1
+          }else if(clientWidth<=320){
+            return 0.5
+          }
+          var p = Number(
+                  ((_D.body && _D.body.clientWidth) || _self.Html.offsetWidth) / 750
+          ).toFixed(3);
+          return p;
+          // return p > 1.067 ? 1.067 : p < 0.444 ? 0.444 : p;
+        };
+        _self.changePage = function () {
+          _self.Html.setAttribute(
+                  "style",
+                  "font-size:" + _self.widthProportion() * 100 + "px"
+          );
+        };
+        _self.changePage();
+        if (!document.addEventListener) return;
+        window.addEventListener(_self.resizeEvt, _self.changePage, false);
+        document.addEventListener("DOMContentLoaded", _self.changePage, false);
+      })(document);
+    </script>
+    <link rel="stylesheet" type="text/css" media="all" href="./Recharge_files/init.css">
+    <link rel="stylesheet" type="text/css" media="all" href="./Recharge_files/trad.css">
+
+    <style>
+      .filter_box {
+        background: #fff;
+        border-radius: 0.12rem;
+        padding: 0.2rem;
+        margin-bottom: 0.2rem;
+      }
+      .search_box {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        margin-bottom: 0.2rem;
+      }
+      .transfer_search_input {
+        flex: 1;
+        height: 0.7rem;
+        padding: 0 0.2rem;
+        border: 1px solid #e5e5e5;
+        border-radius: 0.08rem;
+        font-size: 0.28rem;
+      }
+      .date_filter {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+      }
+      .transfer_start_date, .transfer_end_date {
+        flex: 1;
+        height: 0.7rem;
+        padding: 0 0.2rem;
+        border: 1px solid #e5e5e5;
+        border-radius: 0.08rem;
+        font-size: 0.26rem;
+      }
+      .date_separator {
+        font-size: 0.28rem;
+        color: #999;
+      }
+      .search_btn, .filter_btn {
+        padding: 0.18rem 0.3rem;
+        background: #007aff;
+        color: #fff;
+        border-radius: 0.08rem;
+        font-size: 0.26rem;
+      }
+      .transfer_in_list {
+        background: #fff;
+        border-radius: 0.12rem;
+        overflow: hidden;
+      }
+      .transfer_in_item {
+        display: flex;
+        align-items: center;
+        padding: 0.2rem;
+        border-bottom: 1px solid #f5f5f5;
+      }
+      .transfer_in_item:last-child {
+        border-bottom: none;
+      }
+      .transfer_in_avatar {
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.4rem;
+        margin-right: 0.2rem;
+      }
+      .transfer_in_info {
+        flex: 1;
+      }
+      .transfer_in_name {
+        font-size: 0.3rem;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 0.05rem;
+      }
+      .transfer_in_id {
+        font-size: 0.24rem;
+        color: #999;
+        margin-bottom: 0.05rem;
+      }
+      .transfer_in_time {
+        font-size: 0.22rem;
+        color: #ccc;
+      }
+      .transfer_in_amount {
+        font-size: 0.32rem;
+        font-weight: bold;
+        color: #00b42a;
+      }
+
+      .balance_card {
+        background: linear-gradient(135deg, #e8f5ff, #f0f8ff);
+        border-radius: 0.16rem;
+        padding: 0.3rem;
+        margin-bottom: 0.2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .balance_card::before {
+        content: '';
+        position: absolute;
+        top: -2rem;
+        right: -1rem;
+        width: 4rem;
+        height: 4rem;
+        background: rgba(100, 180, 255, 0.1);
+        border-radius: 50%;
+      }
+      .balance_title {
+        font-size: 0.28rem;
+        color: #666;
+        margin-bottom: 0.15rem;
+      }
+      .balance_amount {
+        font-size: 0.56rem;
+        font-weight: bold;
+        color: #ff6b35;
+        margin-bottom: 0.3rem;
+      }
+      .balance_btn_group {
+        display: flex;
+        gap: 0.15rem;
+        margin-bottom: 0.2rem;
+      }
+      .balance_btn {
+        flex: 1;
+        height: 0.8rem;
+        border-radius: 0.4rem;
+        border: none;
+        font-size: 0.3rem;
+        font-weight: 500;
+        background: rgba(255,255,255,0.8);
+        color: #666;
+        transition: all 0.3s;
+      }
+      .balance_btn.active {
+        background: #007aff;
+        color: #fff;
+      }
+      .min_withdraw {
+        font-size: 0.26rem;
+        color: #ff6b35;
+        font-weight: 500;
+      }
+      .exchange_rate_box {
+        background: #fff;
+        border-radius: 0.12rem;
+        padding: 0.3rem;
+      }
+      .exchange_title {
+        font-size: 0.28rem;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 0.15rem;
+        line-height: 1.5;
+      }
+      .exchange_item {
+        font-size: 0.26rem;
+        color: #666;
+        line-height: 1.6;
+        padding-left: 0.2rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="tab_box space-around">
+        <div class="tab_item active">
+          <span class="lang-translate" lang-id="purchase">Purchase</span>
+          <div class="tab_line"></div>
+        </div>
+        <div class="tab_item">
+          <span class="lang-translate" lang-id="recharge">Recharge</span>
+
+          <div class="tab_line"></div>
+        </div>
+        <div class="tab_item">
+          <span class="lang-translate" lang-id="record">Record</span>
+
+          <div class="tab_line"></div>
+        </div>
+        <div class="tab_item">
+          <span class="lang-translate" lang-id="transferIn">Transfer In</span>
+          <div class="tab_line"></div>
+        </div>
+        <div class="tab_item">
+          <span class="lang-translate" lang-id="withdraw">Withdraw</span>
+          <div class="tab_line"></div>
+        </div>
+      </div>
+      <div class="change_box purchase_box" style="">
+        <div class="topup lang-translate" lang-id="selectCurrentType">Please select a currency type</div>
+        <!-- 下拉框 -->
+        <div class="currency">
+          <div class="lable" data-curtype="USD">
+            <span class="flag-emoji">💰</span>
+            <span>USD</span>
+          </div>
+          <img class="arrow" src="./Recharge_files/arrow.png" alt="">
+          <div class="option">
+            
+            <div class="option_item" data-val="USD">
+              <span class="flag-emoji">💰</span>
+              <span>USD</span>
+            </div>
+            
+            <div class="option_item" data-val="IDR">
+              <span class="flag-emoji">🇮🇩</span>
+              <span>IDR</span>
+            </div>
+            
+            <div class="option_item" data-val="MYR">
+              <span class="flag-emoji">🇲🇾</span>
+              <span>MYR</span>
+            </div>
+            
+            <div class="option_item" data-val="VND">
+              <span class="flag-emoji">🇻🇳</span>
+              <span>VND</span>
+            </div>
+            
+            <div class="option_item" data-val="KWD">
+              <span class="flag-emoji">🇰🇼</span>
+              <span>KWD</span>
+            </div>
+            
+            <div class="option_item" data-val="EGP">
+              <span class="flag-emoji">🇪🇬</span>
+              <span>EGP</span>
+            </div>
+            
+            <div class="option_item" data-val="SAR">
+              <span class="flag-emoji">🇸🇦</span>
+              <span>SAR</span>
+            </div>
+            
+            <div class="option_item" data-val="OMR">
+              <span class="flag-emoji">🇴🇲</span>
+              <span>OMR</span>
+            </div>
+            
+            <div class="option_item" data-val="BHD">
+              <span class="flag-emoji">🇧🇭</span>
+              <span>BHD</span>
+            </div>
+            
+            <div class="option_item" data-val="QAR">
+              <span class="flag-emoji">🇶🇦</span>
+              <span>QAR</span>
+            </div>
+            
+            <div class="option_item" data-val="AED">
+              <span class="flag-emoji">🇦🇪</span>
+              <span>AED</span>
+            </div>
+            
+            <div class="option_item" data-val="THB">
+              <span class="flag-emoji">🇹🇭</span>
+              <span>THB</span>
+            </div>
+            
+            <div class="option_item" data-val="TRY">
+              <span class="flag-emoji">🇹🇷</span>
+              <span>TRY</span>
+            </div>
+            
+            <div class="option_item" data-val="MAD">
+              <span class="flag-emoji">🇲🇦</span>
+              <span>MAD</span>
+            </div>
+            
+            <div class="option_item" data-val="NGN">
+              <span class="flag-emoji">🇳🇬</span>
+              <span>NGN</span>
+            </div>
+            
+            <div class="option_item" data-val="GHS">
+              <span class="flag-emoji">🇬🇭</span>
+              <span>GHS</span>
+            </div>
+            
+            <div class="option_item" data-val="KES">
+              <span class="flag-emoji">🇰🇪</span>
+              <span>KES</span>
+            </div>
+            
+
+          </div>
+        </div>
+
+        <div class="topup lang-translate" lang-id="topup">Top Up</div>
+
+        <div class="coin_box"><div class="coin_item relative active" data-product="27">
+                    <img class="coin2_icon" src="./Recharge_files/coin_new.png" alt="">
+                  <div class="num1">99,000,000</div>
+                  <div class="money">$500.00</div>
+                    
+                  <div class="prob">10%</div>
+                </div>
+                <div class="coin_item relative" data-product="35">
+                    <img class="coin2_icon" src="./Recharge_files/coin_new.png" alt="">
+                  <div class="num1">58,860,000</div>
+                  <div class="money">$300.00</div>
+                    
+                  <div class="prob">9%</div>
+                </div>
+                <div class="coin_item relative" data-product="36">
+                    <img class="coin2_icon" src="./Recharge_files/coin_new.png" alt="">
+                  <div class="num1">38,880,000</div>
+                  <div class="money">$200.00</div>
+                    
+                  <div class="prob">8%</div>
+                </div>
+                <div class="coin_item relative" data-product="37">
+                    <img class="coin2_icon" src="./Recharge_files/coin_new.png" alt="">
+                  <div class="num1">199,800,000</div>
+                  <div class="money">$1,000.00</div>
+                    
+                  <div class="prob">11%</div>
+                </div>
+                </div>
+        <div class="topup lang-translate" lang-id="selectPayMethod">Choose a payment method</div>
+        <div class="pay_sel">
+          <div class="pay_lable" data-paytype="" data-allow="IDR,USD">
+            <img src="http://gmh5.go1777.com/reseller/index?lang=en-us" alt="">
+            <span></span>
+          </div>
+          <img class="pay_arrow" src="./Recharge_files/arrow.png" alt="">
+          <div class="pay_option">
+            <!-- <div class="pay_option_item" data-val="DANA" data-allow="IDR,USD">
+              <img src="/h5/coin/images/dana.png" alt="" />
+              <span>DANA</span>
+            </div>
+            <div class="pay_option_item" data-val="OVO" data-allow="IDR,USD">
+              <img src="/h5/coin/images/ovo.png?v=1" alt="" />
+              <span>OVO</span>
+            </div>
+            <div
+              class="pay_option_item"
+              data-val="LINKAJA"
+              data-allow="IDR,USD"
+            >
+              <img src="/h5/coin/images/linkaja.png" alt="" />
+              <span>LinkAja</span>
+            </div>
+            <div class="pay_option_item" data-val="GOPAY" data-allow="IDR,USD">
+              <img src="/h5/coin/images/gopay.png" alt="" />
+              <span style="position: relative; top: -0.05rem">gopay</span>
+            </div>
+            <div
+              class="pay_option_item"
+              data-val="SHOPEEPAY"
+              data-allow="IDR,USD"
+            >
+              <img src="/h5/coin/images/shopeepay.png" alt="" />
+              <span>SHOPEEPAY</span>
+            </div>
+            <div
+              class="pay_option_item"
+              data-val="GRABPAY"
+              data-allow="MYR"
+              style="display: none"
+            >
+              <img src="/h5/coin/images/grabpay.png" alt="" />
+              <span>GRABPAY</span>
+            </div>
+            <div
+              class="pay_option_item"
+              data-val="TNG"
+              data-allow="MYR"
+              style="display: none"
+            >
+              <img src="/h5/coin/images/tng.png" alt="" />
+              <span>TNG</span>
+            </div>
+            <div
+              class="pay_option_item"
+              data-val="AXIATABOOST"
+              data-allow="MYR"
+              style="display: none"
+            >
+              <img src="/h5/coin/images/axiataboost.png" alt="" />
+              <span>AXIATABOOST</span>
+            </div> -->
+          </div>
+        </div>
+        <div class="sub_btn lang-translate" lang-id="purchase">Purchase</div>
+      </div>
+      <div class="change_box recharge_box" style="display: none;">
+        <div class="search_user space-between">
+          <input type="text" class="search_userid_input" placeholder="Enter buyer`s user ID" value="">
+          <div class="search_btn lang-translate" lang-id="seek">Search</div>
+        </div>
+        <div class="message_box" style="display: none">
+          <div class="flex">
+            <img class="user_photo" src="http://gmh5.go1777.com/reseller/index?lang=en-us" alt="">
+            <div class="space-around" style="flex-direction: column">
+              <div class="message_name"></div>
+              <div class="message_id"><span>ID：</span><span class="userid_num"></span></div>
+            </div>
+          </div>
+          <input type="text" class="coin_input" placeholder="Enter the number of coins" value="">
+          <div class="determine lang-translate" lang-id="determine">Confirm</div>
+        </div>
+        <div class="now_coin">
+
+          <div class="coin_tit lang-translate" lang-id="coinNum">Balance Coins Seller</div>
+          <div class="coin_count  flex">
+            <img src="./Recharge_files/coin_new.png" alt="">
+            <div class="now_coin_num">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="change_box record_box" style="display: none;">
+        <div class="record_main"></div>
+        <!-- <div class="record_item space-around" style="flex-direction: column">
+          <div class="space-between">
+            <div class="record_tit">Recharge for Maria（88888888）</div>
+            <div class="record_num">-20000 coins</div>
+          </div>
+          <div class="record_time">2025.3.16 15:30:30</div>
+        </div>
+        <div
+          class="record_item space-around add_record"
+          style="flex-direction: column"
+        >
+          <div class="space-between">
+            <div class="record_tit">Recharge for Maria（88888888）</div>
+            <div class="record_num">+20000 coins</div>
+          </div>
+          <div class="record_time">2025.3.16 15:30:30</div>
+        </div> -->
+        <div class="none_data lang-translate" style="" lang-id="noData">No Data</div>
+      </div>
+
+      <!-- Transfer In Page -->
+      <div class="change_box transfer_in_box" style="display: none;">
+        <div class="filter_box">
+          <div class="search_box space-between">
+            <input type="text" class="transfer_search_input" placeholder="Search by user ID or name">
+            <div class="search_btn lang-translate" lang-id="seek">Search</div>
+          </div>
+          <div class="date_filter space-between">
+            <input type="date" class="transfer_start_date" placeholder="Start date">
+            <span class="date_separator">~</span>
+            <input type="date" class="transfer_end_date" placeholder="End date">
+            <div class="filter_btn lang-translate" lang-id="seek">Filter</div>
+          </div>
+        </div>
+        <div class="transfer_in_list"></div>
+        <div class="none_data lang-translate" style="display:none" lang-id="noData">No Data</div>
+      </div>
+
+      <!-- Withdraw Page -->
+      <div class="change_box withdraw_box" style="display: none;">
+        <div class="balance_card">
+          <div class="balance_title">My Balance</div>
+          <div class="balance_amount">$0.04</div>
+          <div class="balance_btn_group">
+            <button class="balance_btn withdraw_btn">Withdrawal</button>
+            <button class="balance_btn transfer_btn active">Transfer</button>
+          </div>
+          <div class="min_withdraw">Minimum withdrawal: $200</div>
+        </div>
+        <div class="exchange_rate_box">
+          <div class="exchange_title">1. Regular Seller Gold Coin Exchange Rate:</div>
+          <div class="exchange_item">&lt;1000 USD: 1 USD = 11600 Gold Coins</div>
+          <div class="exchange_item">1000~2000 USD: 1 USD = 11750 Gold Coins</div>
+          <div class="exchange_item">2000~3000 USD: 1 USD = 11800 Gold Coins</div>
+          <div class="exchange_item">2000~3000 USD: 1 USD = 11800 Gold Coins</div>
+          <div class="exchange_item">3000~5000 USD: 1 USD = 11950 Gold Coins</div>
+          <div class="exchange_item">&gt;5000 USD: 1 USD = 12000 Gold Coins</div>
+          <div class="exchange_title">2. Super Seller: Gold Coin Exchange Rate:</div>
+          <div class="exchange_item">&gt;=3000 USD: 1 USD = 12000 Gold Coins</div>
+          <div class="exchange_item">&gt;=3000 USD: 1 USD = 12000 Gold Coins</div>
+          <div class="exchange_title">3. Upgrade to Super Seller: Regular sellers who sell 15,000,000 Gold Coins in a calendar month will automatically be upgraded to Super Coins Sellers in the following calendar month (valid for one month) and will enjoy Super Seller profit benefits.</div>
+        </div>
+      </div>
+    </div>
+    <div class="mask tan_box" style="display: none">
+      <div class="to_box">
+        <div class="t1 alert-title lang-translate" lang-id="alertTitle">Notice</div>
+        <div class="t2 alert-box-msg">Msg</div>
+        <div class="t3 confirm_txt lang-translate" lang-id="determine">Confirm</div>
+      </div>
+    </div>
+    <div class="loading-box" style="display: none">
+      <img src="./Recharge_files/loading.gif" alt="loading" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);width: 0.64rem;height: 0.64rem;">
+    </div>
+  <script src="./Recharge_files/zepto.min.js.下载" language="JavaScript"></script>
+  <script>
+    $(document).ready(function () {
+      const baseUrl = "";
+      // 从缓存里获取token
+      const Authorization = localStorage.getItem("Authorization");
+      
+
+      let lang = `en-us`; //zh-cn
+      let langArr = ["zh-cn", "en-us", "zh-zn", "in-id","vi-vn","ms-my","ar","th","tr"];
+      // 多语言翻译对象
+      const languages = {
+        "tr":{
+          "selectCurrentType": "Lütfen bir para birimi türü seçin",
+          "purchase": "Satın Al",
+          "recharge": "Yükle",
+          "record": "Kayıt",
+          "transferIn": "Transfer In",
+          "withdraw": "Withdraw",
+          "topup": "Bakiye Yükle",
+          "selectPayMethod": "Bir ödeme yöntemi seçin",
+          "useridInputPlaceHolder": "Alıcının kullanıcı ID'sini girin",
+          "seek": "Ara",
+          "determine": "Onayla",
+          "successful": "Yükleme başarılı",
+          "coinNum": "Satıcının Coin Bakiyesi",
+          "coinNumInput": "Coin sayısını girin",
+          "alertTitle": "Bildirim",
+          "noData": "Veri Yok"
+        },
+        "th":{
+          "selectCurrentType": "กรุณาเลือกประเภทสกุลเงิน",
+          "purchase": "ซื้อ",
+          "recharge": "เติมเงิน",
+          "record": "ประวัติ",
+          "transferIn": "Transfer In",
+          "withdraw": "Withdraw",
+          "topup": "เติมเงิน",
+          "selectPayMethod": "เลือกวิธีการชำระเงิน",
+          "useridInputPlaceHolder": "ป้อนรหัสผู้ใช้ของผู้ซื้อ",
+          "seek": "ค้นหา",
+          "determine": "ยืนยัน",
+          "successful": "เติมเงินสำเร็จ",
+          "coinNum": "ยอดเหรียญคงเหลือของผู้ขาย",
+          "coinNumInput": "ป้อนจำนวนเหรียญ",
+          "alertTitle": "แจ้งเตือน",
+          "noData": "ไม่มีข้อมูล"
+        },
+        "ar":{
+          "selectCurrentType": "يرجى اختيار نوع العملة",
+          "purchase": "شراء",
+          "recharge": "شحن",
+          "record": "السجل",
+          "transferIn": "Transfer In",
+          "withdraw": "Withdraw",
+          "topup": "شحن الرصيد",
+          "selectPayMethod": "اختر طريقة الدفع",
+          "useridInputPlaceHolder": "أدخل معرف المستخدم المشتري",
+          "seek": "بحث",
+          "determine": "تأكيد",
+          "successful": "تم الشحن بنجاح",
+          "coinNum": "رصيد بائع العملات",
+          "coinNumInput": "أدخل عدد العملات",
+          "alertTitle": "إشعار",
+          "noData": "لا توجد بيانات"
+        },
+        "ms-my": {
+          "selectCurrentType": "Sila pilih jenis mata wang",
+          "purchase": "Beli",
+          "recharge": "Tambah nilai",
+          "record": "Rekod",
+          "transferIn": "Transfer In",
+          "withdraw": "Withdraw",
+          "topup": "Tambah nilai",
+          "selectPayMethod": "Pilih cara pembayaran",
+          "useridInputPlaceHolder": "Masukkan ID pengguna pembeli",
+          "seek": "Cari",
+          "determine": "Sahkan",
+          "successful": "Tambah nilai berjaya",
+          "coinNum": "Baki Penjual Syiling",
+          "coinNumInput": "Masukkan bilangan syiling",
+          "alertTitle": "Notis",
+          "noData": "Tiada data"
+        },
+        "vi-vn":{
+          "selectCurrentType": "Vui lòng chọn loại tiền tệ",
+          "purchase": "Mua",
+          "recharge": "Nạp tiền",
+          "record": "Lịch sử",
+          "transferIn": "Transfer In",
+          "withdraw": "Withdraw",
+          "topup": "Nạp tiền",
+          "selectPayMethod": "Chọn phương thức thanh toán",
+          "useridInputPlaceHolder": "Nhập ID người dùng của người mua",
+          "seek": "Tìm kiếm",
+          "determine": "Xác nhận",
+          "successful": "Nạp tiền thành công",
+          "coinNum": "Số dư Nhà Bán Xu",
+          "coinNumInput": "Nhập số lượng xu",
+          "alertTitle": "Thông báo",
+          "noData": "Không có dữ liệu"
+        },
+        "in-id": {
+          selectCurrentType: "Silakan pilih jenis mata uang",
+          purchase: "Beli",
+          recharge: "Isi Ulang",
+          record: "Riwayat",
+          transferIn: "Transfer In",
+          withdraw: "Withdraw",
+          topup: "Daftar Top Up",
+          selectPayMethod: "Pilih metode pembayaran",
+          useridInputPlaceHolder: "Masukkan ID pengguna pembeli",
+          seek: "Cari",
+          determine: "Tentukan",
+          successful: "Pengisian berhasil",
+          coinNum: "Balance Coins Seller",
+          coinNumInput: "Masukkan jumlah koin",
+          "alertTitle": "Pemberitahuan",
+          noData :"Tiada data"
+        },
+        "en-us": {
+          selectCurrentType: "Please select a currency type",
+          purchase: "Purchase",
+          recharge: "Recharge",
+          record: "Record",
+          transferIn: "Transfer In",
+          withdraw: "Withdraw",
+          topup: "Top Up",
+          selectPayMethod: "Choose a payment method",
+          useridInputPlaceHolder: "Enter buyer`s user ID",
+          seek: "Search",
+          determine: "Confirm",
+          successful: "Recharge successful",
+          coinNum: "Balance Coins Seller",
+          coinNumInput: "Enter the number of coins",
+          alertTitle:"Notice",
+          noData :"No Data"
+        },
+        "zh-cn": {
+          selectCurrentType: "请选择货币类型",
+          purchase: "购买",
+          recharge: "充值",
+          record: "记录",
+          transferIn: "转入记录",
+          withdraw: "提现",
+          topup: "充值",
+          selectPayMethod: "选择支付方式",
+          useridInputPlaceHolder: "输入买家用户ID",
+          seek: "查找",
+          determine: "确定",
+          successful: "充值成功",
+          coinNum: "金币数量",
+          coinNumInput: "请输入金币数量",
+          alertTitle:"提示",
+          noData :"暂无数据"
+        },
+        "zh-zn": {
+          selectCurrentType: "請選擇貨幣類型",
+          purchase: "購買",
+          recharge: "充值",
+          record: "記錄",
+          transferIn: "轉入記錄",
+          withdraw: "提現",
+          topup: "充值",
+          selectPayMethod: "選擇支付方式",
+          useridInputPlaceHolder: "輸入買家用戶ID",
+          seek: "查找",
+          determine: "確定",
+          successful: "充值成功",
+          coinNum: "金幣數量",
+          coinNumInput: "輸入金幣數量",
+          alertTitle:"提示",
+          noData :"暂无数据"
+        }
+      };
+
+      // 页面加载完成后执行翻译
+      displayMsg();
+
+      function displayMsg() {
+        let msgList = [];
+        if (langArr.includes(lang)) {
+          msgList = languages[lang];
+        } else {
+          lang = "en-us";
+          msgList = languages[lang];
+        }
+        if (lang != "en-us") {
+          document.documentElement.lang = lang;
+        }
+        $(".lang-translate").each(function () {
+          var langKey = $(this).attr("lang-id");
+
+          if (langKey != "") {
+            switch (this.tagName.toLowerCase()) {
+              case "input":
+                $(this).val(msgList[langKey]);
+                break;
+              default:
+                $(this).text(msgList[langKey]);
+            }
+          }
+        });
+
+        $(".coin_input").attr("placeholder", msgList.coinNumInput);
+        $(".search_userid_input").attr(
+          "placeholder",
+          msgList.useridInputPlaceHolder
+        );
+      }
+
+      // tab切换
+      $(".tab_item").click(function () {
+        if ($(".sub_btn").hasClass("disabled")) {
+          // 充值在提交中就不让切换
+          return false;
+        }
+        let $this = $(this);
+        $this.addClass("active").siblings().removeClass("active");
+        let index = $this.index();
+        $(".change_box").eq(index).show().siblings(".change_box").hide();
+        if (index == 0) {
+          // 获取数据
+        }
+        if (index == 1) {
+          // 获取金币数据
+          getCoinNum();
+        }
+        if (index == 2) {
+          // 获取记录数据
+          getRecord(1);
+        }
+        if (index == 3) {
+          // Transfer In 页面
+          loadTransferInData();
+        }
+        if (index == 4) {
+          // Withdraw 页面
+          loadWithdrawData();
+        }
+      });
+      let transfer_user_no = ""; //记录被转的主播ID
+      // 点击seek获取值
+      $("body").on("click", ".search_btn", function () {
+        let user_no = $(".search_userid_input").val();
+
+        if (user_no == "") {
+          alertMsg("Please enter the user ID");
+          return false;
+        } else {
+          let d = { user_no };
+          $(".loading-box").show()
+          $.ajax({
+            type: "post",
+            url: baseUrl + "/reseller/user/search",
+            data: d,
+            dataType: "json",
+            headers: {
+              "Accept-Language": lang,
+              Authorization: Authorization
+            },
+            success: function (json) {
+              $(".loading-box").hide()
+              if (json.code == 200) {
+                let { user_no, nickname, avatarUrl,status,userid } = json.data;
+                if(status!=1){
+                  $(".message_box").hide();
+                  alertMsg("No data")
+                  transfer_user_no = "";
+                  return
+                }
+                // 赋值并展示
+                $(".user_photo").attr("src", avatarUrl);
+                $(".message_name").text(nickname);
+                $(".userid_num").text(user_no);
+                $(".message_box").show();
+                transfer_user_no = userid;
+                $(".determine").removeClass("successful").text(languages[lang].determine);
+
+              } else {
+                alertMsg(json.msg);
+              }
+            },error:function (xhr, status, error){
+              $(".loading-box").hide()
+              alertMsg('Error occurred:'+error+";Status:"+status+";response:"+xhr.responseText)
+            }
+          });
+        }
+      });
+      // 点击detamine
+      $("body").on("click", ".determine", function () {
+        //有success类名的话 就不执行
+        if ($(this).hasClass("successful")) {
+          return false;
+        }
+        let golds = $(".coin_input").val().trim();
+
+        if (golds == "") {
+          alertMsg(languages[lang].coinNumInput);
+          return false;
+        }
+        let d = { golds, transfer_user_no };
+        $(".loading-box").show()
+        $.ajax({
+          type: "post",
+          url: baseUrl + "/reseller/golds/transfer",
+          data: d,
+          dataType: "json",
+          headers: {
+            "Accept-Language": lang,
+            Authorization: Authorization
+          },
+          success: function (json) {
+            $(".loading-box").hide()
+            if (json.code == 200) {
+              // 成功后再次 获取金币数据
+              alertMsg(languages[lang].successful)
+              getCoinNum();
+              $(".determine")
+                .addClass("successful")
+                .text(languages[lang].successful);
+              // 成功后清空输入框
+              $(".coin_input").val("");
+            } else {
+              alertMsg(json.msg);
+            }
+          },error: function(xhr, status, error) {
+            $(".loading-box").hide();
+            // 请求失败时的回调函数
+            alertMsg('Error occurred:'+error+";Status:"+status+";response:"+xhr.responseText);
+          }
+        });
+      });
+
+      function formatNumberV2(num, decimals = 1) {
+        if (Math.abs(num) < 1000 ) {
+          return num.toString();
+        }
+
+
+        const units = ['K', 'M', 'B', 'T'];
+        const unitIndex = Math.floor(Math.log10(Math.abs(num)) / 3) - 1;
+
+        const unit = units[unitIndex];
+        const value = num / Math.pow(1000, unitIndex + 1);
+
+        return value.toFixed(decimals).replace(/\.0+$/, '') + unit;
+      }
+      function formatNumber(num) {
+        return num.toLocaleString();
+      }
+      // 获取金币数量
+      function getCoinNum() {
+        let d = {};
+        $.ajax({
+          type: "post",
+          url: baseUrl + "/reseller/user/info",
+          data: d,
+          dataType: "json",
+          headers: {
+            "Accept-Language": lang,
+            Authorization: Authorization
+          },
+          async: false,
+          success: function (json) {
+            if (json.code == 200) {
+              $(".now_coin_num").text(formatNumber(json.data.golds));
+            } else {
+              alertMsg(json.msg);
+            }
+          }
+        });
+      }
+      let page = 1; //记录页码
+      let pageSuccess = false; //记录是否加载完
+      function getRecord(page) {
+        let d = { page, limit: 10 };
+        $.ajax({
+          type: "get",
+          url: baseUrl + "/reseller/gold/record",
+          data: d,
+          dataType: "json",
+          headers: {
+            "Accept-Language": lang,
+            Authorization: Authorization
+          },
+          async: false,
+          success: function (json) {
+            if (json.code == 200) {
+              let { data } = json;
+              if (data.length == 0) {
+                if (page == 1) {
+                  $(".record_box .none_data").show();
+                } else {
+                  pageSuccess = true;
+                }
+              } else {
+                $(".record_box .none_data").hide();
+                // 遍历数据并赋值
+                if (page == 1) {
+                  $(".record_main").html("");
+                }
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                  let item = data[i];
+                  html += `<div class="record_item space-around ${
+                    item.value > 0 ? "add_record" : ""
+                  }" style="flex-direction: column">
+          <div class="space-between">
+            <div class="record_tit">${item.title}</div>
+            <div class="record_num">${formatNumberV2(item.value,2)} coins</div>
+          </div>
+          <div class="record_time">${item.add_date}</div>
+        </div>`;
+                }
+                $(".record_box .record_main").append(html);
+              }
+            } else {
+              alertMsg(json.msg);
+            }
+          }
+        });
+      }
+      // record_box 滚动到底部分页
+      $(".record_box").scroll(function () {
+        if (pageSuccess) {
+          return false;
+        }
+        let $this = $(this);
+        let scrollTop = $this.scrollTop();
+        let scrollHeight = $this[0].scrollHeight;
+        let clientHeight = $this[0].clientHeight;
+        if (scrollTop + clientHeight >= scrollHeight) {
+          // 滚动到底部，加载更多数据
+          console.log("滚动到底部，加载更多数据");
+          page++;
+          getRecord(page);
+        }
+      });
+
+      //--------------------以下- Purchase部分 JS以原充值页面为准------------------
+      let userid = 0;
+      let goodList = [];
+
+      function GetGoodList(currency) {
+        if(Authorization===""){
+          return
+        }
+        let d = {
+          currency: currency
+        };
+        $.ajax({
+          type: "post",
+          url: baseUrl + "/reseller/product",
+          data: d,
+          dataType: "json",
+          headers: {
+            "Accept-Language": lang,
+            Authorization: Authorization
+          },
+          success: function (json) {
+            if (json.code == 200) {
+              let { data } = json;
+              goodList = data;
+              // 遍历json.data 渲染到coin_box下面
+              let html = "";
+              for (let i = 0; i < data.length; i++) {
+                if (i == 0) {
+                  html += `<div class="coin_item relative active" `;
+                } else {
+                  html += `<div class="coin_item relative" `;
+                }
+                let rateHtml = "";
+                if (data[i].rate) {
+                  rateHtml = `
+                  <div class="prob">${data[i].rate}</div>`;
+                }
+
+                html +=
+                  `data-product="${data[i].gid}">
+                    <img class="coin2_icon" src="/h5/coin/images/coin_new.png" alt="" />
+                  <div class="num1">${formatNumber(data[i].gold)}</div>
+                  <div class="money">${data[i].currency_symbol}${data[i].money}</div>
+                    ` +
+                  rateHtml +
+                  `
+                </div>
+                `;
+                // if (i==0){
+                //   awardsRender(data[i].rewards);
+                // }
+              }
+              $(".coin_box").html(html);
+            } else {
+              alertMsg(json.msg);
+            }
+          }
+        });
+      }
+      function awardsRender(awards) {
+        let html1 = "";
+        let html2 = "";
+        awards.forEach((item, index) => {
+          if (index <= 2) {
+            html1 += `<div class="reward_item flex-center">
+            <img src="${item.imageUrl}" alt="" />
+          </div>`;
+          } else {
+            html2 += `<div class="reward_item flex-center">
+            <img src="${item.imageUrl}" alt="" />
+          </div>`;
+          }
+        });
+        $(".rewards1").html(html1);
+        $(".rewards2").html(html2);
+      }
+
+      let product = "",
+        payType = $(".pay_lable").data("paytype"); //支付方式
+      // 数量切换
+      $("body").on("click", ".coin_item", function () {
+        let $this = $(this);
+        let index = $(this).index();
+        $this.addClass("active").siblings().removeClass("active");
+        product = $this.attr("data-product");
+
+
+      });
+
+      let curType = $(".currency .lable").attr("data-curType");
+      // 下拉点击展开
+      $(".currency").click(function () {
+        $(this).toggleClass("active");
+      });
+
+      // 点击其他地方收起
+      $(document).click(function (e) {
+        if ($(e.target).closest(".currency").length == 0) {
+          $(".currency").removeClass("active");
+        }
+      });
+
+      // 下拉点击展开
+      $(".pay_sel").click(function () {
+        $(this).toggleClass("active");
+      });
+      // 点击其他地方收起
+      $(document).click(function (e) {
+        if ($(e.target).closest(".pay_sel").length == 0) {
+          $(".pay_sel").removeClass("active");
+        }
+      });
+      // 下拉选项点击
+      $("body").on("click",".pay_option_item",function (e) {
+        let $this = $(this);
+        let txt = $this.text();
+        // 设置值并获取值
+        payType = $this.attr("data-val");
+        let img = $this.children("img").attr("src");
+        $(".pay_lable").attr("data-payType", payType);
+        $(".pay_lable img").attr("src", img);
+        $(".pay_lable span").text(txt);
+        if ($(e.target).closest(".pay_sel").length == 0) {
+          $(".pay_sel").removeClass("active");
+        }
+
+      });
+      GetGoodList(curType);
+      $(".tan_box .confirm_txt").click(function (){
+        $(".tan_box").hide()
+      })
+      // 下拉选项点击
+      $(".option_item").click(function (e) {
+        let $this = $(this);
+        let txt = $this.text();
+        // 设置值并获取值
+        curType = $this.attr("data-val");
+        let img = $this.children("img").attr("src");
+        $(".lable").attr("data-curType", curType);
+        $(".lable span").text(txt);
+        $(".lable img").attr("src", img);
+        if ($(e.target).closest(".currency").length == 0) {
+          $(".currency").removeClass("active");
+        }
+
+        getPayType(curType);
+
+        GetGoodList(curType);
+      });
+
+      // 获取支付方式下拉
+      function getPayType(currency) {
+        if(Authorization==""){
+          return
+        }
+        let d = {
+          currency
+        };
+        $.ajax({
+          type: "post",
+          url: baseUrl + "/reseller/charge-type",
+          data: d,
+          dataType: "json",
+          headers: {
+            "Accept-Language": lang,
+            Authorization: Authorization
+          },
+          success: function (json) {
+            if (json.code == 200) {
+              let { data } = json;
+
+              if (data.length > 0) {
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                  html += `<div class="pay_option_item relative" data-val="${data[i].value}">
+                  <img src="${data[i].icon}" alt="" />
+                  <span>${data[i].title}</span>
+                </div>`;
+                }
+                $(".pay_option").html(html);
+
+                let dom = $(".pay_option_item").eq(0);
+                let txt = dom.text();
+                // 设置值并获取值
+                payType = dom.attr("data-val");
+                let img = dom.children("img").attr("src");
+                $(".pay_lable").attr("data-payType", payType);
+                $(".pay_lable img").attr("src", img);
+                $(".pay_lable span").text(txt);
+              } else {
+                payType = "";
+                $(".pay_lable").attr("data-payType", "");
+                $(".pay_lable img").attr("src", "");
+                $(".pay_lable span").text("");
+              }
+            } else {
+              alertMsg(json.msg);
+            }
+          }
+        });
+      }
+      getPayType(curType);
+      function alertMsg(str){
+        $(".tan_box .alert-box-msg").text(str)
+        $(".tan_box").show()
+      }
+
+      // Transfer In 模拟数据
+      let transferInData = [
+        { name: "UserA", uid: "UID10001", diamonds: 15000, time: "2025-05-12 10:30:00", ts: 1746945000000 },
+        { name: "UserB", uid: "UID10002", diamonds: 8000, time: "2025-05-12 09:15:00", ts: 1746940500000 },
+        { name: "UserC", uid: "UID10003", diamonds: 25000, time: "2025-05-11 14:20:00", ts: 1746867600000 },
+        { name: "UserD", uid: "UID10004", diamonds: 12000, time: "2025-05-11 11:00:00", ts: 1746855600000 },
+        { name: "UserE", uid: "UID10005", diamonds: 5000, time: "2025-05-10 16:45:00", ts: 1746775500000 }
+      ];
+
+      function loadTransferInData() {
+        renderTransferInList(transferInData);
+      }
+
+      function renderTransferInList(data) {
+        if (data.length == 0) {
+          $(".transfer_in_box .none_data").show();
+          $(".transfer_in_list").html("");
+          return;
+        }
+        $(".transfer_in_box .none_data").hide();
+        let html = "";
+        data.forEach(item => {
+          html += `
+            <div class="transfer_in_item">
+              <div class="transfer_in_avatar">👤</div>
+              <div class="transfer_in_info">
+                <div class="transfer_in_name">${item.name}</div>
+                <div class="transfer_in_id">${item.uid}</div>
+                <div class="transfer_in_time">${item.time}</div>
+              </div>
+              <div class="transfer_in_amount">+${item.diamonds.toLocaleString()} 💎</div>
+            </div>
+          `;
+        });
+        $(".transfer_in_list").html(html);
+      }
+
+      // Transfer In 搜索功能
+      $("body").on("click", ".transfer_in_box .search_btn", function () {
+        let keyword = $(".transfer_search_input").val().toLowerCase();
+        filterTransferInData(keyword, "", "");
+      });
+
+      // Transfer In 时间筛选功能
+      $("body").on("click", ".transfer_in_box .filter_btn", function () {
+        let keyword = $(".transfer_search_input").val().toLowerCase();
+        let startDate = $(".transfer_start_date").val();
+        let endDate = $(".transfer_end_date").val();
+        filterTransferInData(keyword, startDate, endDate);
+      });
+
+      function filterTransferInData(keyword, startDate, endDate) {
+        let filtered = transferInData.filter(item => {
+          // 关键词筛选
+          let keywordMatch = !keyword || 
+            item.name.toLowerCase().includes(keyword) || 
+            item.uid.toLowerCase().includes(keyword);
+          
+          // 时间筛选
+          let timeMatch = true;
+          if (startDate) {
+            let startTs = new Date(startDate).getTime();
+            timeMatch = timeMatch && item.ts >= startTs;
+          }
+          if (endDate) {
+            let endTs = new Date(endDate).getTime() + 24 * 60 * 60 * 1000; // 包含当天结束
+            timeMatch = timeMatch && item.ts <= endTs;
+          }
+          
+          return keywordMatch && timeMatch;
+        });
+        renderTransferInList(filtered);
+      }
+
+      function loadWithdrawData() {
+        // Withdraw 页面数据加载
+      }
+
+      // 提交
+      $(".sub_btn").click(function () {
+        //不要多次提交
+
+        if ($(this).hasClass("disabled")) {
+          return false;
+        }
+        let product_id = $(".coin_box .coin_item.active").data("product");
+        let d = {
+          product_id,
+          currency: curType,
+          method: payType
+        };
+
+       $(".loading-box").show();
+        // 在整个页面上加loading图片
+        $(this).addClass("disabled");
+        let that = this;
+        $.ajax({
+          type: "post",
+          url: baseUrl + "/reseller/order/create",
+          data: d,
+          dataType: "json",
+          headers: {
+            "Accept-Language": lang,
+            Authorization: Authorization
+          },
+          success: function (json) {
+            $(".loading-box").hide();
+            if (json.code == 200) {
+
+              let { pay_method, url } = json.data;
+              if (url != "") {
+                window.location.href = url;
+              }
+            } else {
+              alertMsg(json.msg);
+            }
+            $(that).removeClass("disabled");
+          },error: function(xhr, status, error) {
+            $(".loading-box").hide();
+            // 请求失败时的回调函数
+            alertMsg('Error occurred:'+error+";Status:"+status+";response:"+xhr.responseText);
+          }
+        });
+
+      });
+    });
+  </script>
+  
+
+</body></html>
